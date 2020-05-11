@@ -3,7 +3,7 @@ create database masque_COVID19;
 
 create table habitants
   (
-    id_ha int primary key not null auto increment,
+    id_ha int primary key not null auto_increment,
     nom varchar(250),
     prenom varchar(250),
     mail varchar(250),
@@ -21,7 +21,7 @@ create table habitants
 
 create table personnel_mairie
     (
-      id_pe int primary key not null auto increment,
+      id_pe int primary key not null auto_increment,
       nom varchar(250),
       prenom varchar(250),
       mail varchar(250),
@@ -30,20 +30,20 @@ create table personnel_mairie
 
 create table etat_demande
   (
-    id_et int primary key not null auto increment,
+    id_et int primary key not null auto_increment,
     accepter char(3),
     refuser char(3),
     en_cour char(3)
   );
 
 alter table habitants add foreign key (fk_et) references etat_demande(id_et);
-alter table personnel_mairie add foreign key (fk_et) references etat_demande(id_et);
+
 
 insert into personnel_mairie (id_pe, nom, prenom, mail, mdp)
   values
-  (lucas, perreaux, lucas.perreaux@ltpdampierre.fr, lucas),
-  (pierson, nicolas, nicolas.pierson@ltpdampierre.fr, nicolas),
-  (pelgrim, nathan, nathan.pelgrim@ltpdampierre.fr, nathan);
+  (perreaux, lucas, "lucas.perreaux@ltpdampierre.fr", lucas),
+  (pierson, nicolas, "nicolas.pierson@ltpdampierre.fr", nicolas),
+  (pelgrim, nathan, "nathan.pelgrim@ltpdampierre.fr", nathan);
 
 insert into etat_demande (id_et, accepter, refuser, en_cours)
   values
