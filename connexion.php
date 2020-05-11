@@ -45,8 +45,8 @@
         <body>
         <form action='' method='POST'>
           <div>
-            <label for='name'>login :</label>
-            <input type='text' id='name' name='login'>
+            <label for='name'>mail :</label>
+            <input type='text' id='name' name='mail'>
           </div>
           <div>
             <label for='password'>Mots de passe :</label>
@@ -62,26 +62,27 @@
       <?php
 
 
-      if (isset ($_POST["login"]) && isset ($_POST["mdp"])) {
+      if (isset ($_POST["mail"]) && isset ($_POST["mdp"])) {
         try {
-          $dsn = 'mysql:dbname=si6;host=127.0.0.1:33';
+          $dsn = 'mysql:dbname=masque_COVID19;host=127.0.0.1:33';
 
           $dbh = new PDO($dsn, 'root', '');
         } catch (PDOException $e){
           echo 'connexion échouée : '.$e->getMessage();
         }
 
-        $sql = 'SELECT id, login, mdp from user WHERE login = :login and mdp = :mdp';
+        $sql = 'SELECT mail, mdp from personnel_mairie WHERE mail = :mail and mdp = :mdp';
         $sth = $dbh->prepare($sql);
-        $sth->execute(array(":login" => $_POST["login"], ":mdp" => $_POST["mdp"]));
+        $sth->execute(array(":mail" => $_POST["mail"], ":mdp" => $_POST["mdp"]));
         $res = $sth->fetch();
 
         if ($res) {
-          echo $res['login']." existe déjà !<br>";
+          echo $res['mail']." existe déjà !<br>";
         } else {
-          $sql = 'INSERT INTO user (login, mdp) values (:login ,:mdp)';
-          $sth = $dbh->prepare($sql);
-          $sth->execute(array(":login" => $_POST["login"], ":mdp" => $_POST["mdp"]));
+          echo "vous n'êtes pas inscrit.";
+          // $sql = 'INSERT INTO personnel_mairie (mail, mdp) values (:mail ,:mdp)';
+          // $sth = $dbh->prepare($sql);
+          // $sth->execute(array(":mail" => $_POST["mail"], ":mdp" => $_POST["mdp"]));
         }
       }
 
