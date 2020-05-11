@@ -12,7 +12,7 @@
         <center>
             Commandez vos masques ici :
             <fieldset style="width: 210px;" >
-        	    <form action="resucomm.php" method="POST" >
+        	    <form action="resumcom.php" method="POST" >
                     Nom : <input type="text" name="nom" required> Prénom : <input type="text" name="prenom" required><br>
                     Adresse :<input type="text" name="adr" required><br>
                     N° de téléphone : <input type="tel" name="tel" required><br>
