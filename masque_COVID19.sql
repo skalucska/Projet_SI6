@@ -31,9 +31,7 @@ create table personnel_mairie
 create table etat_demande
   (
     id_et int primary key not null auto_increment,
-    accepter char(3),
-    refuser char(3),
-    en_cour char(3)
+    etat char(3)
   );
 
 alter table habitants add foreign key (fk_et) references etat_demande(id_et);
@@ -41,12 +39,12 @@ alter table habitants add foreign key (fk_et) references etat_demande(id_et);
 
 insert into personnel_mairie (id_pe, nom, prenom, mail, mdp)
   values
-  (perreaux, lucas, "lucas.perreaux@ltpdampierre.fr", lucas),
-  (pierson, nicolas, "nicolas.pierson@ltpdampierre.fr", nicolas),
-  (pelgrim, nathan, "nathan.pelgrim@ltpdampierre.fr", nathan);
+  (1,"perreaux", "lucas", "lucas.perreaux@ltpdampierre.fr", "lucas"),
+  (2,"pierson", "nicolas", "nicolas.pierson@ltpdampierre.fr", "nicolas"),
+  (3,"pelgrim", "nathan", "nathan.pelgrim@ltpdampierre.fr", "nathan");
 
-insert into etat_demande (id_et, accepter, refuser, en_cours)
+insert into etat_demande (id_et, etat)
   values
-  (acc),
-  (ref),
-  (enc);
+  (1,"acc"),
+  (2,"ref"),
+  (3,"enc");
