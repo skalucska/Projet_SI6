@@ -77,7 +77,7 @@
         $res = $sth->fetch();
 
         if ($res) {
-          header('Location:commande.php');
+          header('Location:demandes.php');
         } else {
           echo "erreur login ou mot de passe";
         }
