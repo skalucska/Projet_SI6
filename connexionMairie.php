@@ -71,7 +71,7 @@
           echo 'connexion échouée : '.$e->getMessage();
         }
 
-        $sql = 'SELECT mail, mdp from habitants WHERE mail = :mail and mdp = :mdp';
+        $sql = 'SELECT mail, mdp from personnel_mairie WHERE mail = :mail and mdp = :mdp';
         $sth = $dbh->prepare($sql);
         $sth->execute(array(":mail" => $_POST["mail"], ":mdp" => $_POST["mdp"]));
         $res = $sth->fetch();
@@ -79,7 +79,7 @@
         if ($res) {
           echo $res['mail']." existe déjà !<br>";
         } else {
-          echo "vous n'êtes pas inscrit.";
+          echo "erreur login ou mot de passe";
         }
       }
 

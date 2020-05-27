@@ -1,5 +1,4 @@
-<php>
-
+<!DOCTYPE>
 <html>
 	<head>
        <meta charset="UTF-8">
@@ -24,4 +23,29 @@
 		</form>
 	</body>
 </html>
-<?php>
+
+<?php
+if (isset ($_POST["mail"]) && isset ($_POST["mdp"])) {
+	try {
+		$dsn = 'mysql:dbname=masque_COVID19;host=127.0.0.1:33';
+
+		$dbh = new PDO($dsn, 'root', '');
+	} catch (PDOException $e){
+		echo 'connexion échouée : '.$e->getMessage();
+	}
+
+	$sql = 'SELECT mail, mdp from habitants WHERE mail = :mail and mdp = :mdp';
+	$sth = $dbh->prepare($sql);
+	$sth->execute(array(":mail" => $_POST["mail"], ":mdp" => $_POST["mdp"]));
+	$res = $sth->fetch();
+
+	if ($res) {
+		echo $res['mail']." existe déjà !<br>";
+	} else {
+		$sql = 'INSERT INTO habitants (mail, mdp) values (:mail ,:mdp)';
+		$sth = $dbh->prepare($sql);
+		$sth->execute(array(":mail" => $_POST["mail"], ":mdp" => $_POST["mdp"]));
+		echo "inscription réussi";
+	}
+}
+?>
