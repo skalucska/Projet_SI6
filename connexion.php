@@ -43,7 +43,7 @@
           </style>
         </head>
         <body>
-        <form action='' method='POST'>
+        <form action='commande.php' method='POST'>
           <div>
             <label for='name'>mail :</label>
             <input type='text' id='name' name='mail'>
@@ -77,7 +77,7 @@
         $res = $sth->fetch();
 
         if ($res) {
-          echo $res['mail']." existe déjà !<br>";
+          header('Location:commande.php');
         } else {
           echo "vous n'êtes pas inscrit.";
         }

@@ -77,7 +77,7 @@
         $res = $sth->fetch();
 
         if ($res) {
-          echo $res['mail']." existe déjà !<br>";
+          header('Location:commande.php');
         } else {
           echo "erreur login ou mot de passe";
         }
